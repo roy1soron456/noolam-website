@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NOOLAM — Woven for the Divine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Oswald:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js" defer></script>
+</head>
+<body>
+  <!-- Scroll Progress Hairline -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Floating Pill Header -->
+  <header class="site-header" id="siteHeader">
+    <a href="#cinematic-opening" class="brand-mark" aria-label="NOOLAM Home">
+      <span class="brand-crest" aria-hidden="true">
+        <svg viewBox="0 0 36 36" fill="none">
+          <path d="M18 3C20.5 9.5 26 12.5 33 18C26 23.5 20.5 26.5 18 33C15.5 26.5 10 23.5 3 18C10 12.5 15.5 9.5 18 3Z" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="18" cy="18" r="4" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">NOOLAM</span>
+        <span class="brand-sub">HANDLOOM ATELIER</span>
+      </span>
+    </a>
+
+    <nav class="pill-nav" aria-label="Primary Navigation">
+      <a href="#moods" class="nav-link active" data-section="moods">Shop All</a>
+      <a href="#try-the-look" class="nav-link" data-section="try-the-look">Try the Look</a>
+      <a href="#pick-a-silk" class="nav-link" data-section="pick-a-silk">Pick a Silk</a>
+      <a href="#the-rack" class="nav-link" data-section="the-rack">The Rack</a>
+      <a href="#reels" class="nav-link" data-section="reels">Reels</a>
+      <a href="#bespoke-weave" class="nav-link" data-section="bespoke-weave">Bespoke</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" id="openSearchBtn" aria-label="Search weaves">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20L16.2 16.2" stroke-linecap="round" />
+        </svg>
+      </button>
+      <button class="icon-btn" id="openWishlistBtn" aria-label="Open wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 20.5C12 20.5 4 15.2 4 9.3C4 6.5 6.2 4.5 8.8 4.5C10.5 4.5 11.5 5.4 12 6.4C12.5 5.4 13.5 4.5 15.2 4.5C17.8 4.5 20 6.5 20 9.3C20 15.2 12 20.5 12 20.5Z" stroke-linejoin="round"/>
+        </svg>
+        <span class="bag-count wishlist-count" id="wishlistCount">0</span>
+      </button>
+      <button class="icon-btn bag-btn" id="openBagBtn" aria-label="Open shopping bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M6 8H18L19 20H5L6 8Z" stroke-linejoin="round" />
+          <path d="M9 8V6C9 4.34315 10.3431 3 12 3C13.6569 3 15 4.34315 15 6V8" stroke-linecap="round" />
+        </svg>
+        <span class="bag-count" id="bagCount">0</span>
+      </button>
+      <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Open navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M4 7H20M4 12H20M4 17H20" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         SCENES 1–3: PINNED CINEMATIC SILK REVEAL & SHOWROOM DOLLY
+         0–10%: Full-screen WebGL red silk saree
+         10–28%: Cloth folds downward & parts to unveil showroom
+         28–50%: Luxury Showroom ("Woven for the Divine")
+         50–85%: Camera dollies forward into the boutique hall
+         85–100%: Seamless dissolve into "An heirloom from the first fold" & shopping
+         ========================================================= -->
+    <section class="cinematic-opening" id="cinematic-opening">
+      <div class="cinematic-stage" id="cinematicStage">
+        <!-- Layered 3D Perspective Showroom Environment -->
+        <div class="showroom-3d-world" id="showroomWorld">
+          <!-- Far Backdrop: Boutique Hall -->
+          <div class="depth-layer layer-far" id="layerFar">
+            <img src="assets/hero-showroom.jpg" alt="NOOLAM luxury silk saree showroom interior" />
+            <div class="warm-light-wash"></div>
+          </div>
+
+          <!-- Midground Depth: Palace Campaign & Heritage Displays -->
+          <div class="depth-layer layer-mid-displays" id="layerMidDisplays">
+            <div class="showroom-display-card left-rack">
+              <img src="assets/mood-maroon.jpg" alt="Bridal maroon silk display" />
+              <span>BRIDAL SANCTUARY</span>
+            </div>
+            <div class="showroom-display-card right-rack">
+              <img src="assets/mood-emerald.jpg" alt="Emerald Banarasi silk display" />
+              <span>TEMPLE ARCHIVE</span>
+            </div>
+          </div>
+
+          <!-- Inner Gallery Hall (Revealed as camera moves forward) -->
+          <div class="depth-layer layer-inner-hall" id="layerInnerHall">
+            <img src="assets/hero-palace.jpg" alt="Royal crimson and peacock teal silk sarees inside the palace hall" />
+            <div class="inner-hall-scrim"></div>
+          </div>
+
+          <!-- Foreground Architectural Pillars & Silk Drapes (Pass by camera during dolly) -->
+          <div class="depth-layer layer-fore-frame" id="layerForeFrame" aria-hidden="true">
+            <div class="fore-pillar left"></div>
+            <div class="fore-pillar right"></div>
+            <div class="fore-silk-swath left"></div>
+            <div class="fore-silk-swath right"></div>
+          </div>
+
+          <!-- Showroom Hero Copy (25–55% progress) -->
+          <div class="showroom-copy container" id="showroomCopy">
+            <span class="hero-eyebrow">KANCHIPURAM &amp; BANARAS ATELIER</span>
+            <h1 class="hero-title">Woven for the <em>Divine.</em></h1>
+            <p class="hero-subtitle">
+              NOOLAM brings the temple looms of Kanchipuram, the gold threads of Banaras, and the heritage weaves of India into your wardrobe.
+            </p>
+            <div class="hero-cta-row">
+              <a href="#try-the-look" class="btn btn-primary">Try the Look</a>
+              <a href="#pick-a-silk" class="btn btn-glass">Explore Silks</a>
+            </div>
+          </div>
+
+          <!-- Inner Hall Copy (55–90% progress) -->
+          <div class="inner-hall-copy container" id="innerHallCopy">
+            <span class="hero-eyebrow">ROYAL KORVAI COLLECTION</span>
+            <h2 class="hero-title">An heirloom from the <em>first fold.</em></h2>
+            <p class="hero-subtitle">
+              Step past the threshold into six moods, live studio drapes, and bespoke three-silk weaves.
+            </p>
+            <div class="hero-cta-row">
+              <a href="#moods" class="btn btn-primary">Enter the Boutique</a>
+              <a href="#bespoke-weave" class="btn btn-glass">Weave Your Own</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Full-Screen WebGL Red Silk Saree Cloth Overlay -->
+        <canvas id="silkCurtainCanvas" aria-label="Interactive red silk saree cloth reveal"></canvas>
+        <div class="silk-fallback-layer" id="silkFallbackLayer" aria-hidden="true">
+          <img src="assets/hero-weave.jpg" alt="" />
+        </div>
+
+        <!-- Initial Silk Crest & Scroll Cue (0–12% progress) -->
+        <div class="opening-silk-overlay" id="openingSilkOverlay">
+          <div class="opening-crest-lockup">
+            <svg viewBox="0 0 48 48" fill="none" class="opening-lotus">
+              <path d="M24 4C27.5 13 35 17 44 24C35 31 27.5 35 24 44C20.5 35 13 31 4 24C13 17 20.5 13 24 4Z" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="24" cy="24" r="5" fill="currentColor"/>
+            </svg>
+            <span class="opening-brand">NOOLAM</span>
+            <span class="opening-tagline">PURE KANCHIPURAM SILK &amp; ANTIQUE ZARI</span>
+          </div>
+          <div class="scroll-cue" id="scrollCue">
+            <span>Scroll to unveil the showroom</span>
+            <i class="scroll-cue-line"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Heritage Tag Marquee -->
+    <div class="marquee-band" aria-hidden="true">
+      <div class="marquee-track">
+        <span>PURE SILK</span>
+        <span class="dot">&bull;</span>
+        <span>HANDWOVEN</span>
+        <span class="dot">&bull;</span>
+        <span>TEMPLE BORDERS</span>
+        <span class="dot">&bull;</span>
+        <span>BRIDAL EDIT</span>
+        <span class="dot">&bull;</span>
+        <span>KORVAI ZARI</span>
+        <span class="dot">&bull;</span>
+        <span>PURE MULBERRY</span>
+        <span class="dot">&bull;</span>
+        <span>PURE SILK</span>
+        <span class="dot">&bull;</span>
+        <span>HANDWOVEN</span>
+        <span class="dot">&bull;</span>
+        <span>TEMPLE BORDERS</span>
+        <span class="dot">&bull;</span>
+        <span>BRIDAL EDIT</span>
+        <span class="dot">&bull;</span>
+        <span>KORVAI ZARI</span>
+        <span class="dot">&bull;</span>
+        <span>PURE MULBERRY</span>
+        <span class="dot">&bull;</span>
+      </div>
+    </div>
+
+    <!-- 6. Six Moods. Timeless Drapes (with Interactive Collection Filter) -->
+    <section class="section moods-section" id="moods">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="section-kicker">CURATED CHAPTERS</span>
+            <h2 class="section-title">Six Moods. <em>Timeless Drapes</em></h2>
+          </div>
+          <div class="mood-filter-pills" id="moodFilters" role="tablist" aria-label="Filter collections">
+            <button class="filter-pill is-active" data-filter="all">All Moods</button>
+            <button class="filter-pill" data-filter="festive">Festive</button>
+            <button class="filter-pill" data-filter="temple">Sanctuary</button>
+            <button class="filter-pill" data-filter="daylight">Daylight</button>
+            <button class="filter-pill" data-filter="bridal">Bridal</button>
+          </div>
+        </div>
+
+        <div class="moods-grid" id="moodsGrid">
+          <article class="mood-card reveal" data-delay="0" data-category="festive" data-look="4">
+            <img src="assets/mood-magenta.jpg" alt="Sunlit Sandstone Magenta Silk" />
+            <div class="mood-overlay">
+              <span class="mood-tag">COURTYARD</span>
+              <h3>Rani Sundown</h3>
+            </div>
+          </article>
+          <article class="mood-card reveal" data-delay="70" data-category="temple" data-look="3">
+            <img src="assets/mood-emerald.jpg" alt="Emerald Banarasi Temple Silk" />
+            <div class="mood-overlay">
+              <span class="mood-tag">SANCTUARY</span>
+              <h3>Emerald Mandap</h3>
+            </div>
+          </article>
+          <article class="mood-card reveal" data-delay="140" data-category="festive" data-look="2">
+            <img src="assets/mood-mustard.jpg" alt="Mustard Handloom Silk with Lamps" />
+            <div class="mood-overlay">
+              <span class="mood-tag">FESTIVE</span>
+              <h3>Deepam Gold</h3>
+            </div>
+          </article>
+          <article class="mood-card reveal" data-delay="210" data-category="daylight" data-look="5">
+            <img src="assets/mood-ivory.jpg" alt="Ivory and Gold Tissue Silk" />
+            <div class="mood-overlay">
+              <span class="mood-tag">DAYLIGHT</span>
+              <h3>Ivory Whisper</h3>
+            </div>
+          </article>
+          <article class="mood-card reveal" data-delay="280" data-category="temple" data-look="6">
+            <img src="assets/mood-cobalt.jpg" alt="Cobalt Kanjivaram Studio Portrait" />
+            <div class="mood-overlay">
+              <span class="mood-tag">SOIRÉE</span>
+              <h3>Neela Twilight</h3>
+            </div>
+          </article>
+          <article class="mood-card reveal" data-delay="350" data-category="bridal" data-look="0">
+            <img src="assets/mood-maroon.jpg" alt="Wine Maroon Bridal Silk" />
+            <div class="mood-overlay">
+              <span class="mood-tag">HEIRLOOM</span>
+              <h3>Sindoor Bridal</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Try the Look — Interactive Center-Focus Studio Stage -->
+    <section class="section try-look-section" id="try-the-look">
+      <div class="container">
+        <div class="section-header centered reveal">
+          <span class="section-kicker">INTERACTIVE LOOKBOOK</span>
+          <h2 class="section-title">Try the <em>Look.</em></h2>
+          <p class="section-caption">
+            Seven looks, styled head to toe. Tap a look to glide her into center focus and inspect the weave.
+          </p>
+        </div>
+
+        <div class="look-stage-wrapper">
+          <button class="stage-nav prev" id="lookPrev" aria-label="Previous look">&#8592;</button>
+          <div class="look-stage" id="lookStage" role="listbox" aria-label="Saree looks"></div>
+          <button class="stage-nav next" id="lookNext" aria-label="Next look">&#8594;</button>
+        </div>
+
+        <div class="look-info-dock reveal" id="lookInfoDock">
+          <div class="look-info-meta">
+            <span class="look-origin" id="lookOrigin">KANCHIPURAM KORVAI</span>
+            <h3 class="look-name" id="lookName">Maragatham Temple Green</h3>
+            <p class="look-desc" id="lookDesc">Lush emerald weave highlighted with classic rudraksha gold motifs.</p>
+          </div>
+          <div class="look-info-actions">
+            <button class="btn btn-outline-dark btn-sm" id="lookToggleMode">Solo Focus</button>
+            <button class="btn btn-outline-dark btn-sm" id="lookInspectBtn">Details</button>
+            <span class="look-price" id="lookPrice">₹31,200</span>
+            <button class="btn btn-primary" id="lookAddBag">Add to Bag</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Pick a Silk — Tilted Saturated Card Deck -->
+    <section class="section pick-silk-section" id="pick-a-silk">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="section-kicker">WEAVE ARCHIVE</span>
+            <h2 class="section-title">Pick a <em>Silk</em></h2>
+          </div>
+          <div class="carousel-controls">
+            <button class="circle-arrow dark" id="silkPrev" aria-label="Scroll silks left">&#8592;</button>
+            <button class="circle-arrow dark" id="silkNext" aria-label="Scroll silks right">&#8594;</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="silk-deck-viewport" id="silkDeckViewport">
+        <div class="silk-deck-track" id="silkDeckTrack"></div>
+      </div>
+    </section>
+
+    <!-- 9. Every silk, on the rack — Pendulum Hanger Carousel -->
+    <section class="section rack-section" id="the-rack">
+      <div class="container">
+        <div class="section-header centered reveal">
+          <span class="section-kicker">STUDIO GARMENT RAIL</span>
+          <h2 class="section-title">Every silk, <em>on the rack.</em></h2>
+          <div class="rack-tabs" role="tablist" aria-label="Garment category">
+            <button class="rack-tab is-active" data-category="sarees" role="tab" aria-selected="true">Silk Sarees</button>
+            <button class="rack-tab" data-category="blouses" role="tab" aria-selected="false">Zari Blouses</button>
+            <button class="rack-tab rack-mode-btn" id="rackModeBtn" type="button">Rack Spread</button>
+          </div>
+        </div>
+
+        <div class="rack-stage">
+          <div class="rack-rail">
+            <span class="rack-bracket left"></span>
+            <span class="rack-bar"></span>
+            <span class="rack-bracket right"></span>
+          </div>
+
+          <div class="rack-track" id="rackTrack"></div>
+
+          <div class="rack-active-bar">
+            <button class="circle-arrow dark" id="rackPrev" aria-label="Previous garment">&#8592;</button>
+            <div class="rack-active-meta">
+              <span class="rack-active-weave" id="rackWeave">MADURAI SHOT SILK</span>
+              <h3 class="rack-active-title" id="rackTitle">Haldi Saffron Korvai</h3>
+              <div class="rack-active-cta">
+                <span class="rack-active-price" id="rackPrice">₹23,800</span>
+                <button class="btn btn-primary btn-sm" id="rackAddBtn">ADD TO BAG</button>
+              </div>
+            </div>
+            <button class="circle-arrow dark" id="rackNext" aria-label="Next garment">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. Draped in devotion & Feel the drape -->
+    <section class="section devotion-section" id="devotion">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="section-kicker">SIGNATURE EDITIONS</span>
+            <h2 class="section-title">Draped in devotion. <em>Woven in light.</em></h2>
+          </div>
+          <a href="#bespoke-weave" class="text-link">Commission a custom weave &rarr;</a>
+        </div>
+
+        <div class="product-row" id="devotionGrid"></div>
+
+        <!-- Feel the drape split showcase -->
+        <div class="drape-split reveal">
+          <div class="drape-thumbs" id="drapeThumbs">
+            <div class="drape-split-copy">
+              <span class="section-kicker">MOVEMENT STUDY</span>
+              <h2 class="section-title">Feel the <em>drape</em></h2>
+              <p class="section-caption">
+                Select a drape study to watch how hand-beaten zari catches natural daylight in motion.
+              </p>
+            </div>
+            <div class="drape-thumb-grid" id="drapeThumbGrid"></div>
+          </div>
+
+          <div class="drape-preview-panel">
+            <div class="drape-preview-frame" id="drapePreviewFrame">
+              <img src="assets/mood-magenta.jpg" alt="Active drape study" id="drapePreviewImg" />
+              <div class="drape-shimmer"></div>
+              <div class="drape-preview-caption">
+                <span class="drape-badge" id="drapeBadge">TEMPLE ZARI FALL</span>
+                <h3 id="drapeTitle">Rani Sundown Kanjivaram</h3>
+                <button class="btn btn-primary btn-sm" id="drapeExploreBtn">Add This Look — ₹26,400</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. The Bridal Collection — Warm Aura Arched Showcase -->
+    <section class="section bridal-section" id="bridal">
+      <div class="bridal-aura" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header centered reveal">
+          <span class="section-kicker">SACRED HEIRLOOMS</span>
+          <h2 class="section-title">The <em>Bridal</em> Collection</h2>
+          <p class="section-caption">
+            Archival crimson, maroon, and antique-gold korvai drapes crafted for auspicious vows.
+          </p>
+        </div>
+
+        <div class="bridal-arches reveal" id="bridalArches"></div>
+      </div>
+    </section>
+
+    <!-- 12. Silk, in motion — Inline Center-Spotlight Reel Stage -->
+    <section class="section reels-section" id="reels">
+      <div class="container">
+        <div class="section-header centered reveal">
+          <span class="section-kicker">LIVE LOOKBOOK REELS</span>
+          <h2 class="section-title">Silk, <em>in motion.</em></h2>
+          <p class="section-caption">
+            Watch each silk come alive in the center spotlight — click any story or use the controls to switch.
+          </p>
+        </div>
+
+        <div class="reels-inline-stage">
+          <button class="stage-nav prev" id="reelInlinePrev" aria-label="Previous reel">&#8592;</button>
+          <div class="reels-rail" id="reelsRail"></div>
+          <button class="stage-nav next" id="reelInlineNext" aria-label="Next reel">&#8594;</button>
+        </div>
+      </div>
+
+      <!-- Fullscreen Spotlight Reel Overlay -->
+      <div class="reel-spotlight" id="reelSpotlight" aria-hidden="true">
+        <div class="reel-spotlight-backdrop" id="reelBackdrop"></div>
+        <button class="reel-close" id="reelCloseBtn" aria-label="Close reel">&times;</button>
+        <div class="reel-spotlight-stage">
+          <button class="reel-peek left" id="reelPrevCard" aria-label="Previous reel">
+            <img src="" alt="" id="reelPrevImg" />
+            <span class="peek-label" id="reelPrevLabel"></span>
+          </button>
+
+          <div class="reel-active-player" id="reelActivePlayer">
+            <div class="reel-progress-bars">
+              <div class="reel-progress-fill" id="reelProgressFill"></div>
+            </div>
+            <img src="" alt="" id="reelActiveImg" class="reel-motion-img" />
+            <div class="reel-shimmer-overlay"></div>
+            <div class="reel-player-top">
+              <span class="reel-live-pill"><span class="pulse-dot"></span> SILK MOTION</span>
+              <button class="reel-pause-btn" id="reelPauseBtn" aria-label="Pause motion">❚❚</button>
+            </div>
+            <div class="reel-player-bottom">
+              <span class="reel-weave-tag" id="reelActiveTag"></span>
+              <h3 id="reelActiveTitle"></h3>
+              <p id="reelActiveDesc"></p>
+              <div class="reel-buy-row">
+                <span class="reel-price" id="reelActivePrice"></span>
+                <button class="btn btn-primary btn-sm" id="reelAddBagBtn">Add to Bag</button>
+              </div>
+            </div>
+          </div>
+
+          <button class="reel-peek right" id="reelNextCard" aria-label="Next reel">
+            <img src="" alt="" id="reelNextImg" />
+            <span class="peek-label" id="reelNextLabel"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. Three silks, one weave — Braided Canvas Loom Studio -->
+    <section class="section weave-section" id="bespoke-weave">
+      <div class="container">
+        <div class="section-header centered reveal">
+          <span class="section-kicker">BESPOKE LOOM STUDIO</span>
+          <h2 class="section-title">Three silks, <em>one weave.</em></h2>
+          <p class="section-caption">
+            Select up to three heritage silk threads below to watch them braid together into a custom commissioned drape.
+          </p>
+        </div>
+
+        <div class="weave-stage reveal">
+          <canvas id="weaveCanvas" aria-label="Animated silk weave ribbon visualizer"></canvas>
+          <div class="weave-center-pill">
+            <span>Woven as one</span>
+          </div>
+        </div>
+
+        <div class="weave-selector-label">Choose 3 silks to weave in</div>
+        <div class="weave-swatches" id="weaveSwatches"></div>
+
+        <div class="weave-summary-bar reveal">
+          <div class="weave-selected-list" id="weaveSelectedList"></div>
+          <div class="weave-price-box">
+            <div class="weave-price-meta">
+              <span class="weave-price-label">COMMISSION ESTIMATE</span>
+              <strong class="weave-total-price" id="weaveTotalPrice">₹63,810</strong>
+            </div>
+            <button class="btn btn-primary" id="commissionWeaveBtn">Commission This Weave</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 14. Signature Crimson Editorial Footer -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <div class="footer-hero-copy">
+        <h2>Woven with heritage.<br />Draped for <em>today.</em></h2>
+        <p>Handloom silk sarees crafted across Kanchipuram, Banaras, and Murshidabad.</p>
+        <form class="footer-newsletter" id="newsletterForm">
+          <input type="email" placeholder="Join the loom journal (email)" required aria-label="Email address" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <span class="newsletter-msg" id="newsletterMsg"></span>
+      </div>
+
+      <div class="footer-columns">
+        <div>
+          <h4>COLLECTIONS</h4>
+          <a href="#moods">Six Moods</a>
+          <a href="#try-the-look">Try the Look</a>
+          <a href="#pick-a-silk">Pick a Silk</a>
+          <a href="#bridal">Bridal Archive</a>
+        </div>
+        <div>
+          <h4>ATELIER</h4>
+          <a href="#the-rack">The Garment Rack</a>
+          <a href="#reels">Silk, in Motion</a>
+          <a href="#bespoke-weave">Three Silks Loom</a>
+          <a href="#devotion">Zari Craftsmanship</a>
+        </div>
+        <div>
+          <h4>CLIENT CARE</h4>
+          <a href="#cinematic-opening">Replay Silk Reveal</a>
+          <a href="#bespoke-weave">Bespoke Sizing</a>
+          <a href="#moods">Showroom Visits</a>
+          <a href="#devotion">Worldwide Shipping</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-wordmark-wrap">
+      <div class="footer-wordmark">NOOLAM</div>
+      <div class="footer-bottom container">
+        <span>&copy; 2026 NOOLAM Handloom Atelier. All rights reserved.</span>
+        <span>Crafted in pure mulberry &amp; zari</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Navigation Drawer -->
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="bag-backdrop" id="mobileBackdrop"></div>
+    <div class="mobile-panel" role="dialog" aria-label="Mobile Navigation">
+      <div class="bag-header">
+        <h3>NOOLAM</h3>
+        <button class="close-drawer" id="closeMobileBtn" aria-label="Close menu">&times;</button>
+      </div>
+      <nav class="mobile-links">
+        <a href="#cinematic-opening">Showroom Reveal</a>
+        <a href="#moods">Six Moods</a>
+        <a href="#try-the-look">Try the Look</a>
+        <a href="#pick-a-silk">Pick a Silk</a>
+        <a href="#the-rack">The Rack</a>
+        <a href="#bridal">Bridal Collection</a>
+        <a href="#reels">Silk, in Motion</a>
+        <a href="#bespoke-weave">Three Silks Weave</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Product Detail Quick-View Modal -->
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="search-backdrop" id="productBackdrop"></div>
+    <div class="product-dialog" role="dialog" aria-label="Product Details">
+      <button class="close-drawer product-modal-close" id="closeProductModal" aria-label="Close product details">&times;</button>
+      <div class="product-dialog-media">
+        <img src="" alt="" id="pdImg" />
+      </div>
+      <div class="product-dialog-info">
+        <span class="section-kicker" id="pdWeave"></span>
+        <h3 id="pdName"></h3>
+        <p class="pd-desc" id="pdDesc"></p>
+        <div class="pd-price" id="pdPrice"></div>
+
+        <div class="pd-variants">
+          <span class="pd-label">Zari Finish &amp; Pallu Variant</span>
+          <div class="pd-variant-pills" id="pdVariants">
+            <button class="filter-pill is-active" data-variant="Antique Temple Zari">Antique Temple Zari</button>
+            <button class="filter-pill" data-variant="Pure Silver-Gold Korvai">Pure Silver-Gold Korvai</button>
+            <button class="filter-pill" data-variant="With Unstitched Zari Blouse">With Zari Blouse</button>
+          </div>
+        </div>
+
+        <div class="pd-actions">
+          <button class="btn btn-primary" id="pdAddBag">Add to Bag</button>
+          <button class="btn btn-outline-dark" id="pdWishlistBtn">Save to Wishlist</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Drawer -->
+  <aside class="bag-drawer" id="wishlistDrawer" aria-hidden="true">
+    <div class="bag-backdrop" id="wishlistBackdrop"></div>
+    <div class="bag-panel" role="dialog" aria-label="Saved Wishlist">
+      <div class="bag-header">
+        <h3>Saved Silks</h3>
+        <button class="close-drawer" id="closeWishlistBtn" aria-label="Close wishlist">&times;</button>
+      </div>
+      <div class="bag-items" id="wishlistItems"></div>
+    </div>
+  </aside>
+
+  <!-- Slide-Over Shopping Bag Drawer -->
+  <aside class="bag-drawer" id="bagDrawer" aria-hidden="true">
+    <div class="bag-backdrop" id="bagBackdrop"></div>
+    <div class="bag-panel" role="dialog" aria-label="Shopping Bag">
+      <div class="bag-header">
+        <h3>Your Silk Bag</h3>
+        <button class="close-drawer" id="closeBagBtn" aria-label="Close bag">&times;</button>
+      </div>
+      <div class="bag-items" id="bagItems"></div>
+      <div class="bag-footer">
+        <div class="bag-subtotal-row">
+          <span>Subtotal</span>
+          <strong id="bagSubtotal">₹0</strong>
+        </div>
+        <p class="checkout-note">Concierge inquiry only — no payment gateway is charged in this preview.</p>
+        <button class="btn btn-primary btn-block" id="checkoutBtn">Request Atelier Reservation</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Quick Search Modal -->
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-backdrop" id="searchBackdrop"></div>
+    <div class="search-dialog" role="dialog" aria-label="Search NOOLAM">
+      <div class="search-input-row">
+        <input type="text" id="searchInput" placeholder="Search Kanjivaram, Banarasi, Bridal, Mustard..." />
+        <button class="close-drawer" id="closeSearchBtn" aria-label="Close search">&times;</button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- Toast Feedback -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/hero-weave-data.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
